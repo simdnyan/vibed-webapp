@@ -1,0 +1,16 @@
+{
+	"authors": [
+		"Yoshinori SHIMADA"
+	],
+	"description": "A simple vibe.d web application.",
+	"name": "vibed-webapp",
+	"dependencies": {
+		"vibe-d": "~>0.7.31",
+		"dyaml": "~>0.6.1",
+		"mysql-native": "~>1.0.0"
+	},
+	"license": "MIT",
+	"copyright": "Copyright © 2016, Yoshinori SHIMADA",
+	"versions": [
+	]
+}

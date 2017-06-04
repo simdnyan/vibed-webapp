@@ -1,0 +1,6 @@
+database:
+  host:     db
+  port:     3306
+  database: vibed
+  user:     vibed
+  password: password

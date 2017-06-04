@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  vibed:
+    image: simdnyan/vibed
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/src
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=vibed
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=vibed
+      - MYSQL_PASSWORD=password
