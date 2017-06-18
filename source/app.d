@@ -1,7 +1,11 @@
+module app;
+
 import vibe.d;
 import mysql;
 import dyaml;
 import resource;
+import home;
+
 
 void main()
 {
@@ -18,18 +22,7 @@ void main()
     lowerPrivileges();
 
     auto config = Loader(configFile).load();
-
-    auto settings = new HTTPServerSettings;
-    settings.port = port;
-    settings.bindAddresses = [address];
-
-    auto router = new URLRouter;
-    auto mysqlResource = new MySQLResourceImplementation;
-    router.registerRestInterface(mysqlResource);
-    router.post("/resources", &mysqlResource.postResources);
-    router.put("/resources/:id", &mysqlResource.putResources);
-
-    auto dbConfig = config["database"];
+    auto dbConfig = config["mysql"];
     auto mysql = new MySQLPool(
         dbConfig["host"].as!string,
         dbConfig["user"].as!string,
@@ -38,6 +31,26 @@ void main()
         dbConfig["port"].as!ushort
     );
     Resource.mysql = mysql;
+
+    auto settings = new HTTPServerSettings;
+    settings.port = port;
+    settings.bindAddresses = [address];
+
+    auto router = new URLRouter;
+    auto mysqlResource = new MySQLResourceImplementation;
+    router.registerRestInterface(mysqlResource);
+
+    router.registerWebInterface(new HomeConroller(mysql));
+
+    router.post("/api/resources", &mysqlResource.postResources);
+    router.put("/api/resources/:id", &mysqlResource.putResources);
+
+    auto redisConfig = config["redis"];
+    settings.sessionStore = new RedisSessionStore(
+        redisConfig["host"].as!string,
+        redisConfig["database"].as!long,
+        redisConfig["port"].as!ushort
+    );
 
     listenHTTP(settings, router);
 

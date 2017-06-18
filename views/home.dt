@@ -1,0 +1,12 @@
+extends layout
+
+block head
+	- auto title = "Home";
+
+block contents
+
+	- if (!auth.isNull)
+		p Hello, #{auth.userName}!
+
+	- else
+		p Please <a href="login">log in</a> or <a href="signup">sign up</a>.

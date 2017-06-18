@@ -1,6 +1,11 @@
-database:
-  host:     db
+mysql:
+  host:     mysql
   port:     3306
   database: vibed
   user:     vibed
   password: password
+redis:
+  host: redis
+  database: 0
+  port: 6379
+

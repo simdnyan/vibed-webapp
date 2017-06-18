@@ -72,7 +72,7 @@ class Resource
 
 interface MySQLResourceAPI
 {
-    @path("resources/:id"){
+    @path("api/resources/:id"){
         Resource.model getResource(string _id);
         void deleteResource(string _id);
     }

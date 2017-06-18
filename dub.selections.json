@@ -1,6 +1,7 @@
 {
 	"fileVersion": 1,
 	"versions": {
+		"dauth": "0.6.3",
 		"diet-ng": "1.2.1",
 		"dyaml": "0.6.2",
 		"libasync": "0.8.3",

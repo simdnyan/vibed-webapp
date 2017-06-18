@@ -6,6 +6,7 @@
 	"name": "vibed-webapp",
 	"dependencies": {
 		"vibe-d": "~>0.7.31",
+		"dauth": "~>0.6.3",
 		"dyaml": "~>0.6.1",
 		"mysql-native": "~>1.0.0"
 	},

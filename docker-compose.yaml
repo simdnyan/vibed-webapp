@@ -8,8 +8,9 @@ services:
     volumes:
       - .:/src
     depends_on:
-      - db
-  db:
+      - mysql
+      - redis
+  mysql:
     image: mariadb
     ports:
       - "3306:3306"
@@ -20,3 +21,8 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_USER=vibed
       - MYSQL_PASSWORD=password
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
